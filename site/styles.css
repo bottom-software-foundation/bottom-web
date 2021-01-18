@@ -2,10 +2,6 @@
   cursor: url(pleading.png), auto;
 }
 
-html {
-  overflow: hidden;
-}
-
 .textarea-tweak {
   outline: none;
   overflow: hidden;
