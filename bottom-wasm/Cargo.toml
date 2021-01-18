@@ -1,0 +1,20 @@
+[package]
+name = "bottom-wasm"
+version = "0.1.0"
+authors = ["Kaylynn <mkaylynn7@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+wasm-bindgen = "0.2.69"
+bottomify = "1"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[package.metadata.wasm-pack.profile.release]
+wasm-opt = false
+
+[package.metadata.wasm-pack.profile.debug]
+wasm-opt = false
