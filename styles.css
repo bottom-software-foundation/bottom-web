@@ -1,0 +1,19 @@
+* {
+  cursor: url(pleading.png), auto;
+}
+
+html {
+  overflow: hidden;
+}
+
+.textarea-tweak {
+  outline: none;
+  overflow: hidden;
+
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  border-radius: 0.2em;
+
+  resize: none;
+}

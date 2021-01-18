@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css"
+    integrity="sha512-EZLkOqwILORob+p0BXZc+Vm3RgJBOe1Iq/0fiI7r/wJgzOFZMlsqTa29UEl6v6U6gsV4uIpsNZoV32YZqrCRCQ=="
+    crossorigin="anonymous" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <title>Bottomify</title>
+</head>
+
+<div class="container">
+  <h1 style="text-align: center; margin-top: 2rem">Bottom translator 1.0</h1>
+
+  <body>
+    Enter text below, than press either of the aptly titled buttons to
+    translate it. Any valid UTF-8 can be translated, with a highly efficient
+    encoding ratio of approximately 1<b> : </b>20 between input and output
+    bytes. The translator is implemented in rust (btw) and runs in the browser
+    using WASM, so it's super fast.
+  </body>
+  <textarea style="margin-top: 1.5rem" class="u-full-width textarea-tweak" placeholder="Enter text"
+    id="textarea-txt-entry" spellcheck="false" autocomplete="off" oninput="growth_hormones(this)"></textarea>
+  <script src="./bottom_wasm.js"></script>
+  <script>
+    window.addEventListener("load", async () => {
+      await wasm_bindgen("./bottom_wasm_bg.wasm");
+    });
+
+    function growth_hormones(element, extra = 0) {
+      element.style.height = "auto";
+      element.style.height = element.scrollHeight + extra + "px";
+    }
+
+    function bottomify() {
+      var input_box = document.getElementById("textarea-txt-entry");
+      var output_box = document.getElementById("textarea-txt-output");
+      output_box.value = wasm_bindgen.encode(input_box.value);
+      growth_hormones(output_box, 5);
+    }
+
+    function regress() {
+      var input_box = document.getElementById("textarea-txt-entry");
+      var output_box = document.getElementById("textarea-txt-output");
+      var result = wasm_bindgen.decode(input_box.value);
+      output_box.value =
+        result == null ? "(decoding failed - you suck)" : result;
+      growth_hormones(output_box, 5);
+    }
+
+    function swap() {
+      var input_box = document.getElementById("textarea-txt-entry");
+      var output_box = document.getElementById("textarea-txt-output");
+      console.log(input_box.value, output_box.value);
+      [input_box.value, output_box.value] = [
+        output_box.value,
+        input_box.value,
+      ];
+      growth_hormones(output_box, 5);
+    }
+  </script>
+  <div class="row">
+    <div class="four columns">
+      <a class="button button-primary u-full-width" onclick="bottomify()">
+        Bottomify
+      </a>
+    </div>
+    <div class="four columns">
+      <a class="button u-full-width" onclick="regress()">Regress</a>
+    </div>
+    <div class="four columns">
+      <a class="button u-full-width" onclick="swap()">Swap</a>
+    </div>
+  </div>
+  <textarea readonly style="margin-top: 1rem" class="u-full-width textarea-tweak" placeholder="Output will appear here"
+    id="textarea-txt-output" autocomplete="off"></textarea>
+</div>
+
+<script>
+  window.addEventListener("load", async () => {
+    var output_box = document.getElementById("textarea-txt-output");
+    growth_hormones(output_box, 5);
+  });
+</script>
+
+ <footer style="text-align: center; width: 100%; margin-bottom: 1rem;">
+  <div class="container">
+    <body>Made with pure spite and hatred by Kaylynn Morgan. Copyright 2021 - whenever.</body>
+  </div>
+</footer> 
+
+</html>

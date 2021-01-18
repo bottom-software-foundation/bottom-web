@@ -1,0 +1,14 @@
+{
+  "name": "bottom-wasm",
+  "collaborators": [
+    "Kaylynn <mkaylynn7@gmail.com>"
+  ],
+  "version": "0.1.0",
+  "files": [
+    "bottom_wasm_bg.wasm",
+    "bottom_wasm.js",
+    "bottom_wasm.d.ts"
+  ],
+  "browser": "bottom_wasm.js",
+  "types": "bottom_wasm.d.ts"
+}
